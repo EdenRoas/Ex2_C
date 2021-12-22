@@ -1,20 +1,22 @@
-
+CC=gcc
+AR=ar
+FLAGS= -Wall -g
 .PHONY: all
 
 all: lib.a main.o
-	gcc -Wall -g -o connections main.o my_mat.o
+	$(CC) $(FLAGS) -o connections main.o my_mat.o
 
 connections: lib.a main.o
-	gcc -Wall -g -o main.o my_mat.o connections
+	$(CC) $(FLAGS) -o main.o my_mat.o connections
 
 lib.a: my_mat.o
-	gcc rcs -o lib.a my_mat.o
+	$(AR) rcs -o lib.a my_mat.o
 
 my_mat.o: my_mat.c my_mat.h
-	gcc -Wall -g) -c my_mat.c 
+	$(CC) $(FLAGS) -c my_mat.c 
 
 main.o: main.c my_mat.h
-	gcc -Wall -g -c main.c
+	$(CC) $(FLAGS) -c main.c
 
 run:
 	gcc my_mat.c
@@ -22,4 +24,4 @@ run:
 
 
 clean:
-	rm -f *.o *.a *.so *.out connections
+	rm -f *.o *.a *.so *.out
